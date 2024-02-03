@@ -2,7 +2,6 @@ import { auth, googleProvider } from '../firebase.js';
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import { Avatar, Button, TextField } from '@mui/material';
-import '../welcome.css'
 
 function Welcome() {
 
@@ -41,10 +40,10 @@ function Welcome() {
           {
             user ? (
               <div>
-              <Avatar alt={user.displayName} src={user.photoURL} />
-              <Button variant='outlined' onClick={signOutGoogle}>
-                signOut!
-              </Button>
+                <Avatar alt={user.displayName} src={user.photoURL} />
+                <Button variant='outlined' onClick={signOutGoogle}>
+                  signOut!
+                </Button>
               </div>
             ) : (
               <Button variant='outlined' onClick={googleSignIn}>
@@ -53,11 +52,12 @@ function Welcome() {
             )
           }
         </div>
-        <header className="greeting">
+        <div className="greeting">
             <h1> Welcome! </h1>
-        </header>
-        <TextField />
-
+        </div>
+        <div>
+          <TextField />
+        </div>
       </div>
     );
   }
