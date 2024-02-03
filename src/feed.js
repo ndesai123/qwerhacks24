@@ -37,6 +37,14 @@ function FeedPage() {
     // Add more events as needed
   ];
 
+  const handleToggleInterest = (eventId) => {
+    setEvents((prevEvents) =>
+      prevEvents.map((event) =>
+        event.id === eventId ? { ...event, interested: !event.interested } : event
+      )
+    );
+  };
+
   useEffect(() => {
     // In a real-world scenario, you might fetch events from a server here.
     // For simplicity, we're using dummy data.
@@ -115,8 +123,10 @@ function FeedPage() {
                 </svg>
                 <label class="event-subheading">{event.description}</label>
               </div>
-              <button type="button" class="button-box">
-                  <label class="button-text">Interested!</label>
+
+              {/* interested button */}
+              <button type="button" class="button-box" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event.id)}>
+                <label class="button-text" style={{ color: event.interested ? '#FAF8ED' : '#436850' }}>{event.interested ? 'No Longer Interested' : 'Interested!'}</label>
               </button>
             </div>
           </div>
