@@ -1,36 +1,4 @@
 /* welcome page*/
-.title{
-  color: #000;
-  font-family: Bungee;
-  font-size: 80px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.search{
-  width: 790px;
-  height: 70px;
-  flex-shrink: 0;
-  border-radius: 30px;
-  background: rgba(67, 104, 80, 0.60);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.titleBox{
-  width: 1300px;
-  height: 800px;
-  flex-shrink: 0;
-  border-radius: 40px;
-  border: 3px solid #FAF8ED;
-  background: rgba(250, 248, 237, 0.90);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  align-items: center;
-  text-align: center;
-  position: absolute;
-
-}
-
 .profilepic{
   width: 90px;
   height: 90px;
@@ -43,28 +11,6 @@
   margin-top:0.25%;
 }
 
-.eventbox{
-  width: 415px;
-  height: 778px;
-  flex-shrink: 0;
-  border-radius: 40px;
-  border: 3px solid #436850;
-  background: rgba(67, 104, 80, 0.06);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.eventbutton{
-  /* width: 225px;
-  height: 49px; */
-  width: 94.5rem;
-  height: 6.9375rem;
-  flex-shrink: 0;
-  border-radius: 40px;
-  border: 3px solid #436850;
-  background: rgba(67, 104, 80, 0.20);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
 .profilebox{
   width: 40%;
   height: 100%;
@@ -75,6 +21,23 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   text-align: center;
   margin: 3%;
+]
+  
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    margin: 0; 
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .profileboxtext{
@@ -245,3 +208,49 @@
 body {margin:0;padding:0}
 
 
+=======
+#root {
+  display: grid;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 6rem;
+  background-image: url('./images/Background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.MainInterface {
+  display: grid;
+  background-color: rgba(250,248 , 237, 0.30);
+  grid-template-rows: 1fr 2fr 3fr;
+  padding: 20px;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-spacing {
+  position: absolute;
+  right: 10%;
+  border-radius: 2.5rem;
+  border: 0px solid #000;
+  background: #FAF8ED;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #436850;
+}
+
+
+.button-style {
+  margin: 20px;
+}
