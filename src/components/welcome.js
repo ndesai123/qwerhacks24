@@ -46,16 +46,21 @@ function Welcome() {
                 </Button>
               </div>
             ) : (
-              <Button variant='outlined' onClick={googleSignIn}>
-                Join!
+              <div className="button-spacing">
+              <Button className="button-style" variant='outlined' onClick={googleSignIn}>
+                Sign Up!
               </Button>
+              <Button className="button-style" variant='outlined' onClick={googleSignIn}>
+                Sign In!
+              </Button>
+              </div>
             )
           }
         </div>
         <div className="greeting">
             <h1> Welcome! </h1>
         </div>
-        <div>
+        <div className="search-bar">
           <TextField />
         </div>
       </div>

@@ -34,4 +34,34 @@ code {
   display: grid;
   background-color: rgba(250,248 , 237, 0.30);
   grid-template-rows: 1fr 2fr 3fr;
+  padding: 20px;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-spacing {
+  position: absolute;
+  right: 10%;
+  border-radius: 2.5rem;
+  border: 0px solid #000;
+  background: #FAF8ED;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #436850;
+}
+
+
+.button-style {
+  margin: 20px;
 }
