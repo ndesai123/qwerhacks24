@@ -1,70 +1,87 @@
 import { auth, googleProvider } from '../firebase.js';
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
-import { Avatar, Button, TextField } from '@mui/material';
+import { Avatar, Button, Menu, MenuItem, TextField } from '@mui/material';
 
 function Welcome() {
-
   const [user, setUser] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
 
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
-  function googleSignIn(){
-      signInWithPopup(auth, googleProvider)
+  const googleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        onAuthStateChanged(auth, (user) => {
-          setUser(user)});
-        }
-      ).catch((error) => {
+        // setUser(result.user); // you may not need this line as you're already using onAuthStateChanged
+      })
+      .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
+        const email = error.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
       });
-    }
-  function signOutGoogle(){
+  };
+
+  const signOutGoogle = () => {
     signOut(auth);
     setUser(null);
-  }
+  };
 
-    return (
-      <div className="MainInterface">
-        <div className='header'>
-          {
-            user ? (
-              <div>
-                <Avatar alt={user.displayName} src={user.photoURL} />
-                <Button variant='outlined' onClick={signOutGoogle}>
-                  signOut!
-                </Button>
-              </div>
-            ) : (
-              <div className="button-spacing">
-              <Button className="button-style" variant='outlined' onClick={googleSignIn}>
-                Sign Up!
-              </Button>
-              <Button className="button-style" variant='outlined' onClick={googleSignIn}>
-                Sign In!
-              </Button>
-              </div>
-            )
-          }
-        </div>
-        <div className="greeting">
-            <h1> Welcome! </h1>
-        </div>
-        <div className="search-bar">
-          <TextField />
-        </div>
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div className="MainInterface">
+      <div className='header'>
+        {user ? (
+          <div>
+            <Avatar alt={user.displayName} src={user.photoURL} onClick={handleMenuOpen} />
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+              <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Menu>
+          </div>
+        ) : (
+          <div className="button-spacing">
+            <Button className="button-style" variant='outlined' onClick={googleSignIn}>
+              Sign Up!
+            </Button>
+            <Button className="button-style" variant='outlined' onClick={googleSignIn}>
+              Sign In!
+            </Button>
+          </div>
+        )}
       </div>
-    );
-  }
-  
-  export default Welcome;
+      <div className="greeting">
+        <h1> Welcome! </h1>
+      </div>
+      <div className="search-bar">
+        <TextField />
+        <Button>Search</Button>
+      </div>
+    </div>
+  );
+}
+
+export default Welcome;
