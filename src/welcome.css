@@ -1,0 +1,19 @@
+.MainInterface {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(250,248 , 237, 0.30);
+    padding: 20px;
+    margin: 50 px;
+}
+
+.header{
+    height: 20%;
+}
+
+.greeting{
+    height: 50%
+}
+
+.searchbar{
+    height: 30%;
+}
