@@ -78,6 +78,7 @@ function Welcome() {
       </div>
       <div className="search-bar">
         <TextField />
+        <Button>Search</Button>
       </div>
     </div>
   );
