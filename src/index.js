@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Welcome from './welcome';
 import reportWebVitals from './reportWebVitals';
+import EventPage from './createEvent.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
