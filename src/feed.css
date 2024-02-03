@@ -1,0 +1,76 @@
+.top-bar {
+    width: 100%;
+    flex-shrink: 0;
+    background: #436850;
+}
+.main-title {
+    flex-shrink: 0;
+    color: #FAF8ED;
+    font-family: "Libre Caslon Text";
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-left: 2%;
+}
+.column {
+    float: left;
+    width: 33.33%;
+}
+.event-box {
+    width: 27%;
+    height: 90%;
+    flex-shrink: 0;
+    border-radius: 40px;
+    border: 3px solid #436850;
+    background: rgba(67, 104, 80, 0.06);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin: 2.5%;
+}
+.event-title {
+    flex-shrink: 0;
+    color: #37483D;
+    font-family: "Libre Caslon Text";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 0% 0% 0% 10%;
+}
+.event-row {
+    padding: 0% 0% 10% 10%;
+    display: flex;
+}
+.event-subheading {
+    margin-left: 2%;
+    flex-shrink: 0;
+    color: #000;
+    font-family: "Libre Caslon Text";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.button-box {
+    width: 225px;
+    height: 49px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    border: 3px solid #436850;
+    background: rgba(67, 104, 80, 0.20);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 5%;
+    margin-left: 24%;
+}
+.button-text {
+    width: 175px;
+    height: 26px;
+    flex-shrink: 0;
+    color: #436850;
+    text-align: center;
+    font-family: "Libre Caslon Text";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
