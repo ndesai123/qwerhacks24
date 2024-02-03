@@ -1,3 +1,7 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +9,59 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    margin: 0; 
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#root {
+  display: grid;
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 6rem;
+  background-image: url('./images/Background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.MainInterface {
+  display: grid;
+  background-color: rgba(250,248 , 237, 0.30);
+  grid-template-rows: 1fr 2fr 3fr;
+  padding: 20px;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-spacing {
+  position: absolute;
+  right: 10%;
+  border-radius: 2.5rem;
+  border: 0px solid #000;
+  background: #FAF8ED;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #436850;
+}
+
+
+.button-style {
+  margin: 20px;
 }
