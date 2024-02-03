@@ -40,9 +40,9 @@ function EventPage() {
 
             <div>
                 <label class="subheading">Date and Time:</label><br/>
-                <div>
-                    <input type="date" id="eventDate" name="eventDate" class="subtext" required />
-                    <input type="time" id="eventTime" name="eventTime" class="subtext" required />
+                <div class="column-count">
+                    <input type="date" id="eventDate" name="eventDate" class="subtext-split" required />
+                    <input type="time" id="eventTime" name="eventTime" class="subtext-split" required />
                 </div>
             </div>
 
