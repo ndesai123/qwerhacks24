@@ -96,7 +96,7 @@ function EventPage() {
             <label class="main-title">Submit an Event</label>
             <Avatar alt={auth.currentUser.displayName} 
                     src={auth.currentUser.photoURL} 
-                    sx={{ width: 56, height: 56 }} onClick={handleMenuOpen} />
+                    sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
