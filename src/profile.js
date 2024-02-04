@@ -90,13 +90,13 @@ function Profile(){
                                     onClose={handleMenuClose}
                                     >
                                     <Link to="/account">
-                                        <MenuItem onClick={goToProfile}>My Profile</MenuItem>
+                                        <MenuItem class = "dropdowntext" onClick={goToProfile}>My Profile</MenuItem>
                                     </Link>
                                     <Link to="/create-event">
-                                    <MenuItem onClick={createEvent}>Create Event</MenuItem>
+                                    <MenuItem class = "dropdowntext" onClick={createEvent}>Create Event</MenuItem>
                         </Link>
-                        <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
-                        </Menu>
+                        {/* <MenuItem class = "dropdowntext underline" onClick={signOutGoogle}>Sign Out</MenuItem> */}
+                        </Menu> 
                         <div>          
                             <Link to="/">
                                 <img src={AdventureBuddiesImage1} height="100"></img>
