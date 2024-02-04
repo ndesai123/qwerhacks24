@@ -207,6 +207,9 @@ body {
   font-weight: 600;
   line-height: normal;
 }
+.eventTextList{
+  margin-left: 5%;
+}
 
 .flex_vertical
 {

@@ -135,6 +135,12 @@ function Profile(){
                                     <p class="eventText">Event: {event.title}</p>
                                         <p class="eventText">Date: {event.date}</p>
                                         <p class = "eventText">Place: {event.location}</p>
+                                        <p class="eventText">Interested Individuals:</p>
+                                        <ul class="eventText eventTextList">
+                                            {event.participants.map((participant, index) => (
+                                                <li key={index} className="eventText">{participant}</li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 ))}
                             </ul>
