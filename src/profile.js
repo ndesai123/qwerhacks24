@@ -113,7 +113,7 @@ function Profile(){
                     <div class = "profileboxtext">My Events</div>
                     <hr class="line"></hr>
                     <div class = "flex_vertical">
-                            <ul>
+                            <ul class="centering">
                                 {events.map((event) => (
                                     <div class = "eventitem">
                                     <p class="eventText">Event: {event.title}</p>
