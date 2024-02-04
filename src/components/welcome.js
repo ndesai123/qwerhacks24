@@ -2,6 +2,7 @@ import { auth, googleProvider } from '../firebase.js';
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import { Avatar, Button, Menu, MenuItem, TextField } from '@mui/material';
+import { Link } from "react-router-dom";
 
 function Welcome() {
   const [user, setUser] = useState(null);
@@ -47,6 +48,14 @@ function Welcome() {
     setAnchorEl(null);
   };
 
+  const goToProfile = () => {
+    handleMenuClose();
+  };
+
+  const createEvent = () => {
+    handleMenuClose();
+  };
+
   return (
     <div className="MainInterface">
       <div className='header'>
@@ -58,8 +67,12 @@ function Welcome() {
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
             >
-              <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Create Event</MenuItem>
+              <Link to="/account">
+              <MenuItem onClick={goToProfile}>My Profile</MenuItem>
+              </Link>
+              <Link to="/create-event">
+              <MenuItem onClick={createEvent}>Create Event</MenuItem>
+              </Link>
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
             </Menu>
           </div>
