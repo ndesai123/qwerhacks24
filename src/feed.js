@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './styles/feed.css'
 import AdventureBuddiesImage1 from './styles/images/AdventureBuddies1.png'
 import { Link } from "react-router-dom";
-import {doc, getDoc, collection, getDocs} from "firebase/firestore";
+import {doc, getDoc, collection, getDocs, updateDoc } from "firebase/firestore";
 import {db} from "./firebase.js";
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { auth} from './firebase.js'; 
@@ -40,13 +40,22 @@ function FeedPage() {
     querySnapshot.forEach(async (doc) => {
       let data = doc.data();
       let obj = {};
-      obj['id'] = data.id;
+      obj['id'] = doc.id;
       obj['user'] = data.username;
       obj['title'] = data.eventName;
       let date = new Date(data.date * 1000);
       obj['date'] = date.toString();
       obj['location'] = data.eventLocation;
       obj['description'] = data.eventDescription;
+      obj['participants'] = data.participants;
+      let inParticpants = false;
+      data.participants.forEach((participant) => {
+        if(participant === auth.currentUser.email) {
+          inParticpants = true;
+        }
+      });
+      obj['interested'] = inParticpants;
+
 
       temp.push(obj);
       // console.log(doc.id, "=>", doc.data());
@@ -57,12 +66,40 @@ function FeedPage() {
     // console.log(docSnap.data());
   }
 
-  const handleToggleInterest = (eventId) => {
+  const handleToggleInterest = async (event_obj) => {
+
+    console.log("id " + event_obj.id);
+    const eventRef = doc(db, 'event', event_obj.id);
+    console.log(eventRef);
+
+  try {
+    // Get the current event data
+    const eventSnap = await getDoc(eventRef);
+    console.log(eventSnap);
+    const eventData = eventSnap.data();
+    console.log(eventData);
+
+    if(event_obj.interested){
+      const updatedParticipants = event_obj.participants.filter((participant) => {
+        return participant !== auth.currentUser.email
+      })
+      await updateDoc(eventRef, { participants: updatedParticipants });
+    } else{
+      const updatedParticipants = [...event_obj.participants, auth.currentUser.email];
+      await updateDoc(eventRef, { participants: updatedParticipants });
+    }
+
     setEvents((prevEvents) =>
-      prevEvents.map((event) =>
-        event.id === eventId ? { ...event, interested: !event.interested } : event
-      )
-    );
+        prevEvents.map((event) =>
+          event.id === event_obj.id ? { ...event, interested: !event.interested } : event
+        )
+      );
+
+    console.log(eventData.participants);
+    console.log('Toggle interested successfully');
+  } catch (error) {
+    console.error('Error toggling interest:', error);
+  }
   };
 
   useEffect(() => {
@@ -184,7 +221,7 @@ function FeedPage() {
               </div>
 
               {/* interested button */}
-              <button type="button" class="button-box-feed" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event.id)}>
+              <button type="button" class="button-box-feed" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event)}>
                 <label class="button-text" style={{ color: event.interested ? '#FAF8ED' : '#436850' }}>{event.interested ? 'No Longer Interested' : 'Interested!'}</label>
               </button>
             </div>

@@ -34,9 +34,6 @@ function EventPage() {
     handleMenuClose();
   };
 
-  const createEvent = () => {
-    handleMenuClose();
-  };
   const signOutGoogle = () => {
     signOut(auth);
   };
@@ -82,7 +79,7 @@ function EventPage() {
         date: unixTimestamp,
         eventLocation,
         eventDescription,
-        participants: [user.uid],
+        participants: [user.email],
       });
       console.log('Event data stored successfully with ID:', docRef.id);
 

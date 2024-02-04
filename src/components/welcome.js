@@ -108,7 +108,7 @@ function Welcome() {
       <div className='header'>
         {user ? (
           <div>
-            <Avatar alt={user.displayName} src={user.photoURL} onClick={handleMenuOpen} sx={{ borderRadius: '50%', marginLeft: 'auto' }} />
+            <Avatar alt={user.displayName} src={user.photoURL} onClick={handleMenuOpen} sx={{ width: 56, height: 56, borderRadius: '50%', marginLeft: 'auto' }} />
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
