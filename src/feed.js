@@ -123,9 +123,11 @@ function FeedPage() {
     <div>
       <div class="top-bar">
         <label class="main-title">Events Near You</label>
+        {auth.currentUser !== null && (
         <Avatar alt={auth.currentUser === null ? "" : auth.currentUser.displayName} 
                     src={auth.currentUser === null ? "" : auth.currentUser.photoURL} 
                     sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
+        )}
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
@@ -221,9 +223,12 @@ function FeedPage() {
               </div>
 
               {/* interested button */}
-              <button type="button" class="button-box-feed" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event)}>
-                <label class="button-text" style={{ color: event.interested ? '#FAF8ED' : '#436850' }}>{event.interested ? 'No Longer Interested' : 'Interested!'}</label>
-              </button>
+
+              {auth.currentUser !== null && (
+                <button type="button" class="button-box-feed" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event)}>
+                  <label class="button-text" style={{ color: event.interested ? '#FAF8ED' : '#436850' }}>{event.interested ? 'No Longer Interested' : 'Interested!'}</label>
+                </button>
+              )}
             </div>
           </div>
         ))}
