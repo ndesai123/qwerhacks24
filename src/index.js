@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import AppRoutes from './App-routes';
 import reportWebVitals from './reportWebVitals';
 // import './index.css';
-import EventPage from './components/createEvent.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

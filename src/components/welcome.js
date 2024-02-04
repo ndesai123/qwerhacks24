@@ -57,6 +57,7 @@ function Welcome() {
   };
 
   return (
+<div class="background">
     <div className="MainInterface">
       <div className='header'>
         {user ? (
@@ -68,20 +69,21 @@ function Welcome() {
               onClose={handleMenuClose}
             >
               <Link to="/account">
-              <MenuItem onClick={goToProfile}>My Profile</MenuItem>
-              </Link>
-              <Link to="/create-event">
+                <MenuItem onClick={goToProfile}>My Profile</MenuItem>
+                </Link>
+                <Link to="/create-event">
               <MenuItem onClick={createEvent}>Create Event</MenuItem>
-              </Link>
+</Link>
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
             </Menu>
           </div>
         ) : (
           <div className="button-spacing">
-            <Button className="button-style" variant='outlined' onClick={googleSignIn}>
+            <Button className="button-style buttontext" variant='standard' onClick={googleSignIn}>
               Sign Up!
             </Button>
-            <Button className="button-style" variant='outlined' onClick={googleSignIn}>
+            <label class = "padding"></label>
+            <Button className="button-style buttontext" variant='standard' onClick={googleSignIn}>
               Sign In!
             </Button>
           </div>
@@ -89,11 +91,14 @@ function Welcome() {
       </div>
       <div className="greeting">
         <h1> Welcome! </h1>
+              </div>
+      <div class = "searchbargrid"> 
+        <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/>
+        <Link to="/feed">
+          <Button>Search</Button>
+        </Link>
       </div>
-      <div className="search-bar">
-        <TextField />
-        <Button>Search</Button>
-      </div>
+    </div>
     </div>
   );
 }
