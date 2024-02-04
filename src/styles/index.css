@@ -269,6 +269,15 @@ body {margin:0;padding:0}
   border: 2px solid #436850 ;
 }
 
+.button-style-white {
+  border-radius: 2.5rem;
+  background: #FAF8ED;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 10%;
+  border: 2px solid #FAF8ED;
+  height:20%;
+}
+
 .space{
   padding: 10% ;
   background-color: transparent;
