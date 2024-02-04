@@ -8,20 +8,24 @@ const SearchBar = ({ onSearch }) => {
     setQuery(event.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = (query) => {
     // Call the onSearch prop with the current query
     onSearch(query);
+    // TODO: handle linking to feed based on query
+    // clear query
+    setQuery('');
   };
 
   return (
-    <div>
+    <div class = "searchbargrid">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Enter your Location"
         value={query}
         onChange={handleInputChange}
+        className="search-bar"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button class = "searchbutton buttontext" onClick={handleSearch}>Search</button>
     </div>
   );
 };
