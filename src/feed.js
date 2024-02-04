@@ -5,9 +5,28 @@ import AdventureBuddiesImage1 from './styles/images/AdventureBuddies1.png'
 import { Link } from "react-router-dom";
 import {doc, getDoc, collection, getDocs} from "firebase/firestore";
 import {db} from "./firebase.js";
+import { Avatar, Menu, MenuItem } from '@mui/material';
+import { auth} from './firebase.js'; 
+import { signOut } from 'firebase/auth';
 
 function FeedPage() {
   const [events, setEvents] = useState([]);
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  const goToProfile = () => {
+    handleMenuClose();
+  };
+  const createEvent = () => {
+    handleMenuClose();
+  };
+  const signOutGoogle = () => {
+    signOut(auth);
+  };
 
   // Simulated data for demonstration purposes
   const dummyEvents = [
@@ -92,6 +111,22 @@ function FeedPage() {
     <div>
       <div class="top-bar">
         <label class="main-title">Events Near You</label>
+        <Avatar alt={auth.currentUser.displayName} 
+                    src={auth.currentUser.photoURL} 
+                    sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+            <Link to="/account">
+                <MenuItem onClick={goToProfile}>My Profile</MenuItem>
+            </Link>
+            <Link to="/create-event">
+              <MenuItem onClick={createEvent}>Create Event</MenuItem>
+</Link>
+              <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Menu>
         <div >
           <Link to="/">
               <img src={AdventureBuddiesImage1} height="100"></img>
