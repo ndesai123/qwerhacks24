@@ -112,7 +112,9 @@ function FeedPage() {
       <ul>
         {events.filter((event)=>{
           console.log(query)
-          return (query === null ? true : event.title.toLowerCase().includes(query));
+          return (query === null ? true : event.title.toLowerCase().includes(query) || 
+          query === null ? true : event.location.toLowerCase().includes(query) || 
+          query === null ? true : event.description.toLowerCase().includes(query));
         }).map((event) => (
           <div class="rows">
             <div class="event-box column" key={event.id}>
