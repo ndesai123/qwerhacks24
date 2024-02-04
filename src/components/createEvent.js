@@ -31,9 +31,6 @@ function EventPage() {
     handleMenuClose();
   };
 
-  const createEvent = () => {
-    handleMenuClose();
-  };
   const signOutGoogle = () => {
     signOut(auth);
   };
@@ -105,9 +102,6 @@ function EventPage() {
             <Link to="/account">
                 <MenuItem onClick={goToProfile}>My Profile</MenuItem>
             </Link>
-            <Link to="/create-event">
-              <MenuItem onClick={createEvent}>Create Event</MenuItem>
-</Link>
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
             </Menu>
           </div>
