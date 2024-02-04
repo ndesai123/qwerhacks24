@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Welcome from './components/welcome';
 import reportWebVitals from './reportWebVitals';
-import './index.css';
-import EventPage from './createEvent.js'
+// import './index.css';
+import EventPage from './components/createEvent.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Welcome />
+    <EventPage />
   </React.StrictMode>
 );
 
