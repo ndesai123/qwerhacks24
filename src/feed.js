@@ -68,7 +68,7 @@ function FeedPage() {
   useEffect(() => {
     // In a real-world scenario, you might fetch events from a server here.
     // For simplicity, we're using dummy data.
-    setEvents(dummyEvents);
+    // setEvents(dummyEvents);
 
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('q');
