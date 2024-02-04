@@ -1,4 +1,5 @@
 import "./styles/index.css"
+import { Link } from "react-router-dom";
 
 function Profile(){
     return(
@@ -32,7 +33,9 @@ function Profile(){
                             <button type = "button" class = "topbutton">Modify Event</button>
                         </div>
                         <button type = "button" class = "profilebutton">
-                            <label class = "buttontext">Create Event</label>
+                            <Link to="/create-event">
+                                <label class = "buttontext">Create Event</label>
+                            </Link>
                         </button>
                     
                     </div>
@@ -61,7 +64,9 @@ function Profile(){
                             <button type = "button" class = "topbutton">No Longer Interested</button>
                         </div>
                         <button type = "button" class = "profilebutton">
+                            <Link to="/feed">
                             <label class = "buttontext">Explore Events</label>
+                            </Link>
                         </button>
                     
                     </div>
