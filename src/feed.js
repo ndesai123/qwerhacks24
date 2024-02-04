@@ -86,8 +86,8 @@ function FeedPage() {
     <div>
       <div class="top-bar">
         <label class="main-title">Events Near You</label>
-        <Avatar alt={auth.currentUser.displayName} 
-                    src={auth.currentUser.photoURL} 
+        <Avatar alt={auth.currentUser === null ? "" : auth.currentUser.displayName} 
+                    src={auth.currentUser === null ? "" : auth.currentUser.photoURL} 
                     sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
             <Menu
               anchorEl={anchorEl}
