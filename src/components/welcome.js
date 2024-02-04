@@ -59,6 +59,7 @@ function Welcome() {
               onClose={handleMenuClose}
             >
               <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Create Event</MenuItem>
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
             </Menu>
           </div>
