@@ -99,8 +99,10 @@ function FeedPage() {
             </Link>
             <Link to="/create-event">
               <MenuItem onClick={createEvent}>Create Event</MenuItem>
-</Link>
+            </Link>
+            <Link to="/">
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Link>
             </Menu>
         <div >
           <Link to="/">

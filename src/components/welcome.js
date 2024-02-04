@@ -120,7 +120,9 @@ function Welcome() {
                 <Link to="/create-event">
                   <MenuItem onClick={createEvent}>Create Event</MenuItem>
                 </Link>
-              <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+                <Link to="/">
+                <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+                </Link>
             </Menu>
           </div>
         ) : (
