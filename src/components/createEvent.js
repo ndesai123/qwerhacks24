@@ -1,6 +1,6 @@
 // eventPage.js
 import React from 'react';
-import '../createEvent.css';
+import '../styles/createEvent.css';
 import { auth, db } from '../firebase.js'; 
 
 function EventPage() {

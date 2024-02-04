@@ -1,4 +1,4 @@
-import "./index.css"
+import "./styles/index.css"
 
 function Profile(){
     return(

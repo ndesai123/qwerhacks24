@@ -1,6 +1,6 @@
 // FeedPage.js
 import React, { useState, useEffect } from 'react';
-import './feed.css'
+import './styles/feed.css'
 
 function FeedPage() {
   const [events, setEvents] = useState([]);
