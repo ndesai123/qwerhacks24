@@ -1,5 +1,6 @@
 import "./styles/index.css"
 import { Link } from "react-router-dom";
+import AdventureBuddiesImage1 from './styles/images/AdventureBuddies1.png'
 
 function Profile(){
     return(
@@ -8,7 +9,11 @@ function Profile(){
                 <div class="headerBackground">
                     <div class = "flex-container">
                         <label class = "headerText">My Profile</label>
-                        <div class ="profilepic"></div>
+                        <div>          
+                            <Link to="/">
+                                <img src={AdventureBuddiesImage1} height="100"></img>
+                            </Link>
+                        </div>
                     </div>
                         
                 </div>
