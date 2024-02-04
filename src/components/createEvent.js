@@ -34,6 +34,10 @@ function EventPage() {
     handleMenuClose();
   };
 
+  const createEvent = () => {
+    handleMenuClose();
+  };
+
   const signOutGoogle = () => {
     signOut(auth);
   };
