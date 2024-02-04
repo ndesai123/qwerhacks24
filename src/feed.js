@@ -4,6 +4,7 @@ import './styles/feed.css'
 
 function FeedPage() {
   const [events, setEvents] = useState([]);
+  const [query, setQuery] = useState("");
 
   // Simulated data for demonstration purposes
   const dummyEvents = [
@@ -49,6 +50,10 @@ function FeedPage() {
     // In a real-world scenario, you might fetch events from a server here.
     // For simplicity, we're using dummy data.
     setEvents(dummyEvents);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('q');
+    setQuery(myParam);
   }, []);
 
   return (
@@ -59,7 +64,10 @@ function FeedPage() {
       </div>
 
       <ul>
-        {events.map((event) => (
+        {events.filter((event)=>{
+          console.log(query)
+          return (query === null ? true : event.title.includes(query));
+        }).map((event) => (
           <div class="rows">
             <div class="event-box column" key={event.id}>
               <h2 class="event-title">{event.title}</h2>

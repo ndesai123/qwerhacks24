@@ -2,13 +2,17 @@ import { auth, googleProvider } from '../firebase.js';
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import { Avatar, Button, Menu, MenuItem, TextField } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import AdventureBuddiesImage from '../styles/images/AdventureBuddies.png';
 import SearchBar from './searchBar.js';
+import {doc, getDoc, collection, getDocs} from "firebase/firestore";
+import {db} from "../firebase.js";
 
 function Welcome() {
   const [user, setUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [userInput, setUserInput] = useState('');
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -58,8 +62,44 @@ function Welcome() {
     handleMenuClose();
   };
 
-  const handleSearch = () => {
+  const handleSearch = (query) => {
+    // async function search(query) {}
+    //   async function getData() {
+    //     // const docRef = doc(db, "event", "JT2DqJFA0FOjHTZLUZ2j");
+    
+    //     const querySnapshot = await getDocs(collection(db, "event"));
+    //     // console.log(querySnapshot);
+    
+    //     const temp = [];
+    //     querySnapshot.forEach(async (doc) => {
+    //       let data = doc.data();
+    //       let obj = {};
+    //       obj['id'] = data.id;
+    //       obj['user'] = data.username;
+    //       obj['title'] = data.eventName;
+    //       let date = new Date(data.date * 1000);
+    //       obj['date'] = date.toString();
+    //       obj['location'] = data.eventLocation;
+    //       obj['description'] = data.eventDescription;
+    
+    //       temp.push(obj);
+    //       // console.log(doc.id, "=>", doc.data());
+    //     })
+    
+    //     return temp;
+    //     // const docSnap = await getDoc(docRef);
+    //     // console.log(docSnap.data());
+    //   }
+    //   let data = await getData();
+    //   let out = data.filter((event) => {
 
+    //   })
+    //   setResults(out);
+    // }
+  };
+
+  const handleInputChange = (event) => {
+    setUserInput(event.target.value);
   };
 
   return (
@@ -104,10 +144,10 @@ function Welcome() {
       </div>
       <div class = "searchbargrid"> 
         {/* <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/> */}
-        <input className="search-bar" placeholder="Enter Your Location" />
+        <input className="search-bar" id="user-input" placeholder="Enter Your Event Preference, or Hit Search" value={userInput} onChange={handleInputChange}/>
         {/* <SearchBar onSearch={handleSearch} /> */}
-        <Link to="/feed">
-          <Button class = "searchbutton buttontext">Search</Button>
+        <Link to={"/feed?q="+encodeURIComponent(userInput)}>
+          <Button class = "searchbutton buttontext" onClick={handleSearch}>Search</Button>
         </Link>
       </div>
     </div>
