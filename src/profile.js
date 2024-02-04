@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import AdventureBuddiesImage1 from './styles/images/AdventureBuddies1.png'
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { auth, db } from './firebase.js'; 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
+import {collection, getDocs} from "firebase/firestore";
 
 function Profile(){
+    const [events, setEvents] = useState([]);
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -24,6 +26,53 @@ function Profile(){
       const signOutGoogle = () => {
         signOut(auth);
       };
+
+      async function getData() {
+        // const docRef = doc(db, "event", "JT2DqJFA0FOjHTZLUZ2j");
+    
+        const querySnapshot = await getDocs(collection(db, "event"));
+        // console.log(querySnapshot);
+    
+        const temp = [];
+        querySnapshot.forEach(async (doc) => {
+          let data = doc.data();
+          let obj = {};
+          obj['id'] = data.id;
+          obj['user'] = data.username;
+          obj['title'] = data.eventName;
+          let date = new Date(data.date * 1000);
+          obj['date'] = date.toString();
+          obj['location'] = data.eventLocation;
+          obj['description'] = data.eventDescription;
+    
+          temp.push(obj);
+          // console.log(doc.id, "=>", doc.data());
+        })
+    
+        return temp;
+        // const docSnap = await getDoc(docRef);
+        // console.log(docSnap.data());
+      }
+      const handleToggleInterest = (eventId) => {
+        setEvents((prevEvents) =>
+          prevEvents.map((event) =>
+            event.id === eventId ? { ...event, interested: !event.interested } : event
+          )
+        );
+      };
+
+      useEffect(() => {
+        // In a real-world scenario, you might fetch events from a server here.
+        // For simplicity, we're using dummy data.
+        async function callData() {
+          console.log(await getData());
+          setEvents(await getData());
+        }
+        callData();
+    
+        // getData();
+      }, []);
+
     return(
         
         
@@ -64,18 +113,15 @@ function Profile(){
                     <div class = "profileboxtext">My Events</div>
                     <hr class="line"></hr>
                     <div class = "flex_vertical">
-                        <div class = "eventitem">
-                        <p class="eventText">Event Title</p>
-                            <p class="eventText">Date</p>
-                            <p class = "eventText">Location</p>
-                            <button type = "button" class = "topbutton">Modify Event</button>
-                        </div>
-                        <div class = "eventitem">
-                        <p class="eventText">Event Title</p>
-                            <p class="eventText">Date</p>
-                            <p class = "eventText">Location</p>
-                            <button type = "button" class = "topbutton">Modify Event</button>
-                        </div>
+                            <ul>
+                                {events.map((event) => (
+                                    <div class = "eventitem">
+                                    <p class="eventText">Event: {event.title}</p>
+                                        <p class="eventText">Date: {event.date}</p>
+                                        <p class = "eventText">Place: {event.location}</p>
+                                    </div>
+                                ))}
+                            </ul>
                         <button type = "button" class = "profilebutton">
                             <Link to="/create-event">
                                 <label class = "buttontext">Create Event</label>
