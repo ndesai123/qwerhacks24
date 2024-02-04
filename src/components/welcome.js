@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Avatar, Button, Menu, MenuItem, TextField } from '@mui/material';
 import { Link } from "react-router-dom";
 import AdventureBuddiesImage from '../styles/images/AdventureBuddies.png';
+import SearchBar from './searchBar.js';
 
 function Welcome() {
   const [user, setUser] = useState(null);
@@ -57,6 +58,10 @@ function Welcome() {
     handleMenuClose();
   };
 
+  const handleSearch = () => {
+
+  };
+
   return (
 <div class="background">
     <div className="MainInterface">
@@ -99,10 +104,13 @@ function Welcome() {
       </div>
       <div class = "searchbargrid"> 
         {/* <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/> */}
-        <input className="search-bar" placeholder="Enter Your Location" />
+        { /* <input className="search-bar" placeholder="Enter Your Location" /> */ }
+        <SearchBar onSearch={handleSearch} />
+        { /*
         <Link to="/feed">
           <Button class = "searchbutton buttontext">Search</Button>
         </Link>
+        */ }
       </div>
     </div>
     </div>
