@@ -5,6 +5,7 @@ import { auth, db } from '../firebase.js';
 import { Link } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore"; 
 
+
 function EventPage() {
 
   const handleFormSubmit = async () => {
