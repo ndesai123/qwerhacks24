@@ -103,8 +103,7 @@ body {
 }
 
 .buttontext{
-  width: 144px;
-  height: 22px;
+  width: 140%;
   flex-shrink: 0;
   color: #436850;
   text-align: center;
@@ -113,6 +112,7 @@ body {
   font-style: normal;
   font-weight: 600; 
   line-height: normal;
+  padding-top: 7%;
 }
 
 .createEventBox{
@@ -260,7 +260,9 @@ body {margin:0;padding:0}
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   height:35%;
   width: 50%;
-  margin:auto;
+  font-size: 20px;
+  color: #C9E7C8;
+  padding-left: 3%; 
 }
 
 .button-spacing {
@@ -270,8 +272,6 @@ body {margin:0;padding:0}
   right: 10%;
   border-radius: 2.5rem;
   border: 0px solid ;
-  /* background: #FAF8ED; */
-  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
   color: #436850;
 }
 
@@ -304,4 +304,22 @@ body {margin:0;padding:0}
   font-style: normal;
   font-weight: 600;
   margin: 0;
+}
+
+input::placeholder {
+  color: #C9E7C8;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.profile-image {
+  margin-left: 95%;
+  cursor: pointer;
+  border-radius: 50%;
+  /* width: 4%;
+  height: 4%;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 1px solid #000;
+  background: #D9D9D9; */
 }

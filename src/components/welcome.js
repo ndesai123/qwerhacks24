@@ -63,7 +63,7 @@ function Welcome() {
       <div className='header'>
         {user ? (
           <div>
-            <Avatar alt={user.displayName} src={user.photoURL} onClick={handleMenuOpen} />
+            <Avatar alt={user.displayName} src={user.photoURL} onClick={handleMenuOpen} sx={{ borderRadius: '50%', marginLeft: 'auto' }} />
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
@@ -98,7 +98,8 @@ function Welcome() {
             />
       </div>
       <div class = "searchbargrid"> 
-        <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/>
+        {/* <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/> */}
+        <input className="search-bar" placeholder="Enter Your Location" />
         <Link to="/feed">
           <Button class = "searchbutton buttontext">Search</Button>
         </Link>
