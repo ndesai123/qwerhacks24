@@ -146,7 +146,7 @@ function Welcome() {
         {/* <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/> */}
         <input className="search-bar" id="user-input" placeholder="Enter Your Event Preference, or Hit Search" value={userInput} onChange={handleInputChange}/>
         {/* <SearchBar onSearch={handleSearch} /> */}
-        <Link to={"/feed?q="+encodeURIComponent(userInput)}>
+        <Link to={"/feed?q="+encodeURIComponent(userInput.toLowerCase())}>
           <Button class = "searchbutton buttontext" onClick={handleSearch}>Search</Button>
         </Link>
       </div>
