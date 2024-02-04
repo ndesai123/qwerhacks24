@@ -28,38 +28,6 @@ function FeedPage() {
     signOut(auth);
   };
 
-  // Simulated data for demonstration purposes
-  const dummyEvents = [
-    {
-      id: 1,
-      user: 'Natalie',
-      title: 'Event 1',
-      date: '2022-02-15',
-      time: '15:00',
-      location: 'Venue A',
-      description: 'Description for Event 1',
-    },
-    {
-      id: 2,
-      user: 'Shenran',
-      title: 'Event 2',
-      date: '2022-02-20',
-      time: '18:30',
-      location: 'Venue B',
-      description: 'Description for Event 2',
-    },
-    {
-      id: 3,
-      user: 'Esha',
-      title: 'Event 3',
-      date: '2022-02-20',
-      time: '18:30',
-      location: 'Venue B',
-      description: 'Description for Event 2',
-    },
-    // Add more events as needed
-  ];
-
   async function getData() {
     // const docRef = doc(db, "event", "JT2DqJFA0FOjHTZLUZ2j");
 
