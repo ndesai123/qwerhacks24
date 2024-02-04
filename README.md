@@ -1,7 +1,5 @@
 # Adventure Buddies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Setup Instructions
 
 In the project directory, you can run:
