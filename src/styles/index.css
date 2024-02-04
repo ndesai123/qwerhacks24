@@ -207,7 +207,7 @@ body {
 }
 body {margin:0;padding:0}
 
-#root {
+.background {
   display: grid;
   min-width: 100vw;
   min-height: 100vh;
@@ -219,9 +219,13 @@ body {margin:0;padding:0}
 
 .MainInterface {
   display: grid;
-  background-color: rgba(250,248 , 237, 0.30);
+  /* background-color: rgba(250,248 , 237, 0.30); */
   grid-template-rows: 1fr 2fr 3fr;
   padding: 20px;
+  border-radius: 2.5rem;
+  border: 3px solid #FAF8ED;
+  background: rgba(250, 248, 237, 0.90);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .greeting {
@@ -236,19 +240,43 @@ body {margin:0;padding:0}
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 1.875rem;
+  background: rgba(67, 104, 80, 0.60);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  height:15%;
+  width: 50%;
+  margin:auto;
 }
 
 .button-spacing {
   position: absolute;
+  display: flex;
+  flex-direction: horizontal;
   right: 10%;
   border-radius: 2.5rem;
-  border: 0px solid #000;
-  background: #FAF8ED;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 0px solid ;
+  /* background: #FAF8ED; */
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
   color: #436850;
 }
 
 
 .button-style {
-  margin: 20px;
+  border-radius: 2.5rem;
+  background: rgba(67, 104, 80, 0.60);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 10%;
+  border: 2px solid #436850 ;
+}
+
+.space{
+  padding: 10% ;
+  background-color: transparent;
+}
+
+.searchbargrid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
