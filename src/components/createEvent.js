@@ -8,6 +8,9 @@ import Swal from 'sweetalert2'
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { Link } from "react-router-dom";
 import { signOut } from 'firebase/auth';
+import AdventureBuddiesImage1 from '../styles/images/AdventureBuddies1.png'
+
+
 
 
 
@@ -111,6 +114,11 @@ function EventPage() {
 </Link>
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
             </Menu>
+            <div >
+              <Link to="/">
+                <img src={AdventureBuddiesImage1} height="100"></img>
+              </Link>
+            </div>
           </div>
         <div>
           <form id="eventForm" class="box">
