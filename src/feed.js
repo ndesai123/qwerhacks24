@@ -157,8 +157,9 @@ function FeedPage() {
           query === null ? true : event.location.toLowerCase().includes(query) || 
           query === null ? true : event.description.toLowerCase().includes(query));
         }).map((event) => (
-          <div class="rows">
-            <div class="event-box column" key={event.id}>
+          <> 
+            {console.log(auth.currentUser)}
+            <div class="event-box column" key={event.id} style={{height: auth.currentUser === null ? "28rem" : "35rem"}}>
               <h2 class="event-title">{event.title}</h2>
 
               {/* user */}
@@ -230,7 +231,7 @@ function FeedPage() {
                 </button>
               )}
             </div>
-          </div>
+          </>
         ))}
       </ul>
     </div>
