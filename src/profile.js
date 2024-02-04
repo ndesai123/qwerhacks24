@@ -38,13 +38,21 @@ function Profile(){
         querySnapshot.forEach(async (doc) => {
           let data = doc.data();
           let obj = {};
-          obj['id'] = data.id;
-          obj['user'] = data.username;
-          obj['title'] = data.eventName;
-          let date = new Date(data.date * 1000);
-          obj['date'] = date.toString();
-          obj['location'] = data.eventLocation;
-          obj['description'] = data.eventDescription;
+            obj['id'] = doc.id;
+            obj['user'] = data.username;
+            obj['title'] = data.eventName;
+            let date = new Date(data.date * 1000);
+            obj['date'] = date.toString();
+            obj['location'] = data.eventLocation;
+            obj['description'] = data.eventDescription;
+            obj['participants'] = data.participants;
+            let inParticpants = false;
+            data.participants.forEach((participant) => {
+                if(participant === auth.currentUser.email) {
+                inParticpants = true;
+                }
+            });
+      obj['interested'] = inParticpants;
     
           temp.push(obj);
           // console.log(doc.id, "=>", doc.data());
@@ -142,25 +150,17 @@ function Profile(){
                     <div class = "profileboxtext">Interested Events</div>
                     <hr class="line"></hr>
                     <div class = "flex_vertical">
-                        <div class = "eventitem">
-                            <p class="eventText">Event Title</p>
-                            <p class="eventText">Date</p>
-                            <p class = "eventText">Location</p>
-                            <button type = "button" class = "topbutton">No Longer Interested</button>
-                        </div>
-                            
-                        <div class = "eventitem">
-                        <p class="eventText">Event Title</p>
-                            <p class="eventText">Date</p>
-                            <p class = "eventText">Location</p>
-                            <button type = "button" class = "topbutton">No Longer Interested</button>
-                        </div>
-                        <div class = "eventitem">
-                        <p class="eventText">Event Title</p>
-                            <p class="eventText">Date</p>
-                            <p class = "eventText">Location</p>
-                            <button type = "button" class = "topbutton">No Longer Interested</button>
-                        </div>
+                    <ul class="centering">
+                                {events.filter((event)=>{
+                                    return event.interested;
+                                }).map((event) => (
+                                    <div class = "eventitem">
+                                    <p class="eventText">Event: {event.title}</p>
+                                        <p class="eventText">Date: {event.date}</p>
+                                        <p class = "eventText">Place: {event.location}</p>
+                                    </div>
+                                ))}
+                            </ul>
                         <button type = "button" class = "profilebutton">
                             <Link to="/feed">
                             <label class = "buttontext">Explore Events</label>
