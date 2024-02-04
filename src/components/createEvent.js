@@ -8,6 +8,9 @@ import Swal from 'sweetalert2'
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { Link } from "react-router-dom";
 import { signOut } from 'firebase/auth';
+import AdventureBuddiesImage1 from '../styles/images/AdventureBuddies1.png'
+
+
 
 
 
@@ -71,6 +74,7 @@ function EventPage() {
       // Add data to Firestore
       const docRef = await addDoc(collection(db, "event"), {
         owner: user.uid, // Assuming user.uid is the unique user ID
+        username: user.email,
         eventName,
         date: unixTimestamp,
         eventLocation,
@@ -93,7 +97,7 @@ function EventPage() {
             <label class="main-title">Submit an Event</label>
             <Avatar alt={auth.currentUser.displayName} 
                     src={auth.currentUser.photoURL} 
-                    sx={{ width: 56, height: 56 }} onClick={handleMenuOpen} />
+                    sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
@@ -104,6 +108,11 @@ function EventPage() {
             </Link>
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
             </Menu>
+            <div >
+              <Link to="/">
+                <img src={AdventureBuddiesImage1} height="100"></img>
+              </Link>
+            </div>
           </div>
         <div>
           <form id="eventForm" class="box">

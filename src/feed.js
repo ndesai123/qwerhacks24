@@ -3,9 +3,30 @@ import React, { useState, useEffect } from 'react';
 import './styles/feed.css'
 import AdventureBuddiesImage1 from './styles/images/AdventureBuddies1.png'
 import { Link } from "react-router-dom";
+import {doc, getDoc, collection, getDocs} from "firebase/firestore";
+import {db} from "./firebase.js";
+import { Avatar, Menu, MenuItem } from '@mui/material';
+import { auth} from './firebase.js'; 
+import { signOut } from 'firebase/auth';
 
 function FeedPage() {
   const [events, setEvents] = useState([]);
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  const goToProfile = () => {
+    handleMenuClose();
+  };
+  const createEvent = () => {
+    handleMenuClose();
+  };
+  const signOutGoogle = () => {
+    signOut(auth);
+  };
 
   // Simulated data for demonstration purposes
   const dummyEvents = [
@@ -39,6 +60,33 @@ function FeedPage() {
     // Add more events as needed
   ];
 
+  async function getData() {
+    // const docRef = doc(db, "event", "JT2DqJFA0FOjHTZLUZ2j");
+
+    const querySnapshot = await getDocs(collection(db, "event"));
+    // console.log(querySnapshot);
+
+    const temp = [];
+    querySnapshot.forEach(async (doc) => {
+      let data = doc.data();
+      let obj = {};
+      obj['id'] = data.id;
+      obj['user'] = data.username;
+      obj['title'] = data.eventName;
+      let date = new Date(data.date * 1000);
+      obj['date'] = date.toString();
+      obj['location'] = data.eventLocation;
+      obj['description'] = data.eventDescription;
+
+      temp.push(obj);
+      // console.log(doc.id, "=>", doc.data());
+    })
+
+    return temp;
+    // const docSnap = await getDoc(docRef);
+    // console.log(docSnap.data());
+  }
+
   const handleToggleInterest = (eventId) => {
     setEvents((prevEvents) =>
       prevEvents.map((event) =>
@@ -50,13 +98,35 @@ function FeedPage() {
   useEffect(() => {
     // In a real-world scenario, you might fetch events from a server here.
     // For simplicity, we're using dummy data.
-    setEvents(dummyEvents);
+    async function callData() {
+      console.log(await getData());
+      setEvents(await getData());
+    }
+    callData();
+
+    // getData();
   }, []);
 
   return (
     <div>
       <div class="top-bar">
         <label class="main-title">Events Near You</label>
+        <Avatar alt={auth.currentUser.displayName} 
+                    src={auth.currentUser.photoURL} 
+                    sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+            <Link to="/account">
+                <MenuItem onClick={goToProfile}>My Profile</MenuItem>
+            </Link>
+            <Link to="/create-event">
+              <MenuItem onClick={createEvent}>Create Event</MenuItem>
+</Link>
+              <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Menu>
         <div >
           <Link to="/">
               <img src={AdventureBuddiesImage1} height="100"></img>
@@ -109,7 +179,7 @@ function FeedPage() {
                   <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M9 5.92308V9L12.1262 12.6431" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <label class="event-subheading">{event.date} {event.time}</label>
+                <label class="event-subheading">{event.date}</label>
               </div>
 
               {/* description */}
