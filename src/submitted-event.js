@@ -7,13 +7,16 @@ import AdventureBuddiesImage1 from './styles/images/AdventureBuddies1.png'
 function Submitted() {
 
   return (
-    <div>
-        <h1>Your Event has been Successfully Submitted!</h1>
-        <img src={AdventureBuddiesImage1} height="500"></img>
-        <br></br>
-        <Link to="/">
-        <button>Back to Home</button>
+    <div class = "SubmitInterface">
+      <div><h1 class= "headerText centering">Your Event has been Successfully Submitted!</h1></div>
+        
+        <div class = "centering"><img src={AdventureBuddiesImage1} height="300"></img></div>
+        <div class = "centering">
+          <br></br>
+          <Link to="/">
+          <button class = "button-style-white button-text-white" >Back to Home</button>
         </Link>
+        </div>
     </div>
   );
 }

@@ -159,7 +159,7 @@ body {
   font-weight: 600;
   line-height: normal;
   margin-left: 3%;
-  margin-right:30%;
+  margin-right:55%;
  
 }
 
@@ -168,6 +168,8 @@ body {
   width: 100%;
   height: 10%;
   background: #436850;
+  display:flex;
+  justify-content: center;
 
 }
 
@@ -187,7 +189,8 @@ body {
 .eventitem{
   width: 80%;
   height: 100%;
-
+  padding-top: 1%;
+  padding-bottom: 1%;
   background: rgba(67, 104, 80, 0.20);
   text-align: left;
   margin:auto;
@@ -196,6 +199,7 @@ body {
 }
 .eventText{
   padding-left: 5%;
+  padding-right: 5%;
   color: #000;
   font-family: "Libre Caslon Text";
   font-size: 1.25rem;
@@ -284,6 +288,15 @@ body {margin:0;padding:0}
   border: 2px solid #436850 ;
 }
 
+.button-style-white {
+  border-radius: 2.5rem;
+  background: #FAF8ED;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 10%;
+  border: 2px solid #FAF8ED;
+  height:20%;
+}
+
 .space{
   padding: 10% ;
   background-color: transparent;
@@ -322,4 +335,8 @@ input::placeholder {
   border-radius: 30px;
   border: 1px solid #000;
   background: #D9D9D9; */
+}
+
+ul {
+  padding-left: 0;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import AppRoutes from './App-routes';
 import reportWebVitals from './reportWebVitals';
+import Submitted from './submitted-event';
 // import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
