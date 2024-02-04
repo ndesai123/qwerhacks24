@@ -2,6 +2,7 @@
 import React from 'react';
 import '../styles/createEvent.css';
 import { auth, db } from '../firebase.js'; 
+import { collection, addDoc } from "firebase/firestore"; 
 import { Link } from "react-router-dom";
 
 function EventPage() {
@@ -20,23 +21,23 @@ function EventPage() {
     const eventTime = document.getElementById("eventTime").value;
     const eventLocation = document.getElementById("eventLocation").value;
     const eventDescription = document.getElementById("eventDescription").value;
+    const combinedDateTime = new Date(`${eventDate}T${eventTime}`) 
+    const unixTimestamp = Math.floor(combinedDateTime.getTime() / 1000);
 
-    // Create an object to store the event details
-    const eventData = {
-      owner: user.uid, // Assuming user.uid is the unique user ID
-      eventName,
-      eventDate,
-      eventTime,
-      eventLocation,
-      eventDescription,
-      participants: [user.uid],
-    };
 
     // You can perform further actions with the eventData, such as sending it to a server or displaying it.
-    console.log(eventData);
     try {
       // Add data to Firestore
-      const docRef = await db.collection('events').add(eventData);
+      const docRef = await addDoc(collection(db, "event"), {
+        owner: user.uid, // Assuming user.uid is the unique user ID
+        eventName,
+        date: unixTimestamp,
+        eventLocation,
+        eventDescription,
+        participants: [user.uid],
+      });
+      
+      
       console.log('Event data stored successfully with ID:', docRef.id);
     } catch (error) {
       console.error('Error storing event data:', error);
