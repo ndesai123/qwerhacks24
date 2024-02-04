@@ -74,6 +74,7 @@ function EventPage() {
       // Add data to Firestore
       const docRef = await addDoc(collection(db, "event"), {
         owner: user.uid, // Assuming user.uid is the unique user ID
+        username: user.email,
         eventName,
         date: unixTimestamp,
         eventLocation,
