@@ -85,7 +85,7 @@ function Welcome() {
           </div>
         ) : (
           <div className="button-spacing">
-            <Button className="button-style buttontext topbutton" variant='standard' onClick={googleSignIn}>
+            <Button className="button-style buttontext" variant='standard' onClick={googleSignIn}>
               Sign Up!
             </Button>
             <label class = "padding"></label>
