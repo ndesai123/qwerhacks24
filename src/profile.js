@@ -8,6 +8,7 @@ import { signOut } from 'firebase/auth';
 import {collection, getDocs} from "firebase/firestore";
 
 function Profile(){
+    const user = auth.currentUser;
     const [events, setEvents] = useState([]);
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -81,8 +82,8 @@ function Profile(){
                 <div class="headerBackground">
                     <div class = "flex-container">
                         <label class = "headerText">My Profile</label>
-                        <Avatar alt={auth.currentUser.displayName} 
-                                            src={auth.currentUser.photoURL} 
+                        <Avatar alt={auth.currentUser === null ? "" : auth.currentUser.displayName} 
+                                            src={auth.currentUser === null ? "" : auth.currentUser.photoURL} 
                                             sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
                                     <Menu
                                     anchorEl={anchorEl}
@@ -114,7 +115,12 @@ function Profile(){
                     <hr class="line"></hr>
                     <div class = "flex_vertical">
                             <ul class="centering">
-                                {events.map((event) => (
+                                {events.filter((event)=>{
+                                    if(auth.currentUser) {
+                                        return event.user === auth.currentUser.email
+                                    }
+                                    return true;
+                                }).map((event) => (
                                     <div class = "eventitem">
                                     <p class="eventText">Event: {event.title}</p>
                                         <p class="eventText">Date: {event.date}</p>
