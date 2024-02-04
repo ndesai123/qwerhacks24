@@ -2,6 +2,7 @@
 import React from 'react';
 import '../styles/createEvent.css';
 import { auth, db } from '../firebase.js'; 
+import { Link } from "react-router-dom";
 
 function EventPage() {
 
@@ -79,7 +80,9 @@ function EventPage() {
               </div>
               <div>
                 <button type="button" class="submit-button" onClick={ handleFormSubmit }>
+                    <Link to="/submitted">
                     <label class="button-text">Submit</label>
+                    </Link>
                 </button>
               </div>
           </form>

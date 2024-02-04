@@ -4,6 +4,7 @@ import Welcome from './components/welcome'; // Import your components
 import FeedPage from './feed';
 import Profile from './profile';
 import EventPage from './components/createEvent';
+import Submitted from './submitted-event';
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
         <Route path="/feed" element={<FeedPage/>} />
         <Route path="/account" element={<Profile/>} />
         <Route path="/create-event" element={<EventPage/>} />
+        <Route path="/submitted" element={<Submitted/>} />
         
       </Routes>
     </Router>
