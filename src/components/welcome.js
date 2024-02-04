@@ -104,13 +104,11 @@ function Welcome() {
       </div>
       <div class = "searchbargrid"> 
         {/* <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/> */}
-        { /* <input className="search-bar" placeholder="Enter Your Location" /> */ }
-        <SearchBar onSearch={handleSearch} />
-        { /*
+        <input className="search-bar" placeholder="Enter Your Location" />
+        {/* <SearchBar onSearch={handleSearch} /> */}
         <Link to="/feed">
           <Button class = "searchbutton buttontext">Search</Button>
         </Link>
-        */ }
       </div>
     </div>
     </div>
