@@ -100,4 +100,11 @@
     font-weight: 600;
     line-height: normal;
 }
+.top-bar {
+    width: 100%;
+    flex-shrink: 1;
+    background: #436850;
+    display: flex;
+    justify-content: center;
+}
 

@@ -1,11 +1,42 @@
 // eventPage.js
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/createEvent.css';
 import { auth, db } from '../firebase.js'; 
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore"; 
+import Swal from 'sweetalert2'
+import { Avatar, Menu, MenuItem } from '@mui/material';
 import { Link } from "react-router-dom";
+import { signOut } from 'firebase/auth';
+
+
 
 function EventPage() {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate('/');
+  }
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const goToProfile = () => {
+    handleMenuClose();
+  };
+
+  const createEvent = () => {
+    handleMenuClose();
+  };
+  const signOutGoogle = () => {
+    signOut(auth);
+  };
 
   const handleFormSubmit = async () => {
     // Get user information
@@ -25,6 +56,19 @@ function EventPage() {
     const unixTimestamp = Math.floor(combinedDateTime.getTime() / 1000);
 
 
+    if (!eventName || !eventDate || !eventTime || !eventLocation || !eventDescription) {
+      // Show an error popup using SweetAlert
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill out all required fields!',
+        confirmButtonColor: "#436850",
+
+      });
+      return;
+    }
+
+
     // You can perform further actions with the eventData, such as sending it to a server or displaying it.
     try {
       // Add data to Firestore
@@ -36,9 +80,10 @@ function EventPage() {
         eventDescription,
         participants: [user.uid],
       });
-      
-      
       console.log('Event data stored successfully with ID:', docRef.id);
+
+      navigate('/submitted');
+
     } catch (error) {
       console.error('Error storing event data:', error);
     }
@@ -47,12 +92,28 @@ function EventPage() {
   return (
     <div>
       <header>
+          <div class="top-bar">
+            <label class="main-title">Submit an Event</label>
+            <Avatar alt={auth.currentUser.displayName} 
+                    src={auth.currentUser.photoURL} 
+                    sx={{ width: 56, height: 56 }} onClick={handleMenuOpen} />
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+            <Link to="/account">
+                <MenuItem onClick={goToProfile}>My Profile</MenuItem>
+            </Link>
+            <Link to="/create-event">
+              <MenuItem onClick={createEvent}>Create Event</MenuItem>
+</Link>
+              <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Menu>
+          </div>
         <div>
-          {/* <div class = "overlay" onclick="toggleOverlay()">
-            <label class = "overlayText">Your Response Has Been Submitted :D</label>
-          </div> */}
           <form id="eventForm" class="box">
-              <button class="button-box" type="button">
+              <button class="button-box" type="button" onClick={ handleBack } >
                   <label class="button-text">Back</label>
               </button>
               
@@ -81,9 +142,7 @@ function EventPage() {
               </div>
               <div>
                 <button type="button" class="submit-button" onClick={ handleFormSubmit }>
-                    <Link to="/submitted">
-                    <label class="button-text">Submit</label>
-                    </Link>
+                  <label className="button-text">Submit</label>
                 </button>
               </div>
           </form>
@@ -91,11 +150,6 @@ function EventPage() {
       </header>
     </div>
   );
-
-  function toggleOverlay() {
-    var overlay = document.getElementsByClassName("overlay")[0];
-    overlay.style.display = (overlay.style.display === "flex") ? "none" : "flex";
-  }
 }
 
 export default EventPage;
