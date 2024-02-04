@@ -57,47 +57,48 @@ function Welcome() {
   };
 
   return (
-    <div class="background">
-      <div className="MainInterface">
-        <div className='header'>
-          {user ? (
-            <div>
-              <Avatar alt={user.displayName} src={user.photoURL} onClick={handleMenuOpen} />
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-              >
-                <Link to="/account">
+<div class="background">
+    <div className="MainInterface">
+      <div className='header'>
+        {user ? (
+          <div>
+            <Avatar alt={user.displayName} src={user.photoURL} onClick={handleMenuOpen} />
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <Link to="/account">
                 <MenuItem onClick={goToProfile}>My Profile</MenuItem>
                 </Link>
                 <Link to="/create-event">
-                <MenuItem onClick={createEvent}>Create Event</MenuItem>
-                </Link>
-                <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
-              </Menu>
-            </div>
-          ) : (
-            <div className="button-spacing">
-              <Button className="button-style" variant='outlined' onClick={googleSignIn}>
-                Sign Up!
-              </Button>
-              <Button className="button-style" variant='outlined' onClick={googleSignIn}>
-                Sign In!
-              </Button>
-            </div>
-          )}
-        </div>
-        <div className="greeting">
-          <h1> Welcome! </h1>
-        </div>
-        <div className="search-bar">
-          <TextField />
-          <Link to="/feed">
-          <Button>Search</Button>
-          </Link>
-        </div>
+              <MenuItem onClick={createEvent}>Create Event</MenuItem>
+</Link>
+              <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Menu>
+          </div>
+        ) : (
+          <div className="button-spacing">
+            <Button className="button-style buttontext" variant='standard' onClick={googleSignIn}>
+              Sign Up!
+            </Button>
+            <label class = "padding"></label>
+            <Button className="button-style buttontext" variant='standard' onClick={googleSignIn}>
+              Sign In!
+            </Button>
+          </div>
+        )}
       </div>
+      <div className="greeting">
+        <h1> Welcome! </h1>
+              </div>
+      <div class = "searchbargrid"> 
+        <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/>
+        <Link to="/feed">
+          <Button>Search</Button>
+        </Link>
+      </div>
+    </div>
     </div>
   );
 }
