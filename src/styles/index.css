@@ -87,9 +87,23 @@ body {
   margin-left: 35%;
   margin-bottom: 3%;
 }
+
+.searchbutton{
+  width: 80%;
+  height: 100%;
+  flex-shrink: 0;
+  border-radius: 40px;
+  border: 2px solid #436850;
+  
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left:20%;
+  padding-bottom:10px;
+  text-align: center;
+
+}
+
 .buttontext{
-  width: 144px;
-  height: 22px;
+  width: 140%;
   flex-shrink: 0;
   color: #436850;
   text-align: center;
@@ -98,6 +112,7 @@ body {
   font-style: normal;
   font-weight: 600; 
   line-height: normal;
+  padding-top: 7%;
 }
 
 .createEventBox{
@@ -135,7 +150,7 @@ body {
 
 .headerText{
 
-  height: 90px;
+  height: 10%;
   flex-shrink: 0;
   color: #FAF8ED;
   font-family: "Libre Caslon Text";
@@ -220,7 +235,7 @@ body {margin:0;padding:0}
 .MainInterface {
   display: grid;
   /* background-color: rgba(250,248 , 237, 0.30); */
-  grid-template-rows: 1fr 2fr 3fr;
+  grid-template-rows: 0.5fr 3fr 0.75fr;
   padding: 20px;
   border-radius: 2.5rem;
   border: 3px solid #FAF8ED;
@@ -243,9 +258,11 @@ body {margin:0;padding:0}
   border-radius: 1.875rem;
   background: rgba(67, 104, 80, 0.60);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  height:15%;
+  height:35%;
   width: 50%;
-  margin:auto;
+  font-size: 20px;
+  color: #C9E7C8;
+  padding-left: 3%; 
 }
 
 .button-spacing {
@@ -255,8 +272,6 @@ body {margin:0;padding:0}
   right: 10%;
   border-radius: 2.5rem;
   border: 0px solid ;
-  /* background: #FAF8ED; */
-  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
   color: #436850;
 }
 
@@ -269,14 +284,51 @@ body {margin:0;padding:0}
   border: 2px solid #436850 ;
 }
 
+.button-style-white {
+  border-radius: 2.5rem;
+  background: #FAF8ED;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 10%;
+  border: 2px solid #FAF8ED;
+  height:20%;
+}
+
 .space{
   padding: 10% ;
   background-color: transparent;
 }
 
-.searchbargrid{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
+.searchbargrid {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+}
+
+.titletext{
+  color: #436850;
+  font-family: "Libre Caslon Text";
+  font-size: 5rem;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+
+input::placeholder {
+  color: #C9E7C8;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.profile-image {
+  margin-left: 95%;
+  cursor: pointer;
+  border-radius: 50%;
+  /* width: 4%;
+  height: 4%;
+  flex-shrink: 0;
+  border-radius: 30px;
+  border: 1px solid #000;
+  background: #D9D9D9; */
 }
