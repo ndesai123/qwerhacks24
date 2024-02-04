@@ -50,7 +50,7 @@ function FeedPage() {
       obj['participants'] = data.participants;
       let inParticpants = false;
       data.participants.forEach((participant) => {
-        if(participant === auth.currentUser.email) {
+        if(auth.currentUser && participant === auth.currentUser.email) {
           inParticpants = true;
         }
       });
@@ -81,11 +81,11 @@ function FeedPage() {
 
     if(event_obj.interested){
       const updatedParticipants = event_obj.participants.filter((participant) => {
-        return participant !== auth.currentUser.email
+        return participant !== auth.currentUser === null ? " " :  auth.currentUser.email
       })
       await updateDoc(eventRef, { participants: updatedParticipants });
     } else{
-      const updatedParticipants = [...event_obj.participants, auth.currentUser.email];
+      const updatedParticipants = [...event_obj.participants, auth.currentUser === null ? " " : auth.currentUser.email];
       await updateDoc(eventRef, { participants: updatedParticipants });
     }
 
