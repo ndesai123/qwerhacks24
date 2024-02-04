@@ -55,6 +55,7 @@ function FeedPage() {
     <div>
       <div class="top-bar">
         <label class="main-title">Events Near You</label>
+        <div class = "pic"></div>
       </div>
 
       <ul>
@@ -125,7 +126,7 @@ function FeedPage() {
               </div>
 
               {/* interested button */}
-              <button type="button" class="button-box" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event.id)}>
+              <button type="button" class="button-box-feed" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event.id)}>
                 <label class="button-text" style={{ color: event.interested ? '#FAF8ED' : '#436850' }}>{event.interested ? 'No Longer Interested' : 'Interested!'}</label>
               </button>
             </div>
