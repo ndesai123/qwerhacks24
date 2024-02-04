@@ -11,6 +11,8 @@ import { signOut } from 'firebase/auth';
 
 function FeedPage() {
   const [events, setEvents] = useState([]);
+  const [query, setQuery] = useState("");
+
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -27,38 +29,6 @@ function FeedPage() {
   const signOutGoogle = () => {
     signOut(auth);
   };
-
-  // Simulated data for demonstration purposes
-  // const dummyEvents = [
-  //   {
-  //     id: 1,
-  //     user: 'Natalie',
-  //     title: 'Event 1',
-  //     date: '2022-02-15',
-  //     time: '15:00',
-  //     location: 'Venue A',
-  //     description: 'Description for Event 1',
-  //   },
-  //   {
-  //     id: 2,
-  //     user: 'Shenran',
-  //     title: 'Event 2',
-  //     date: '2022-02-20',
-  //     time: '18:30',
-  //     location: 'Venue B',
-  //     description: 'Description for Event 2',
-  //   },
-  //   {
-  //     id: 3,
-  //     user: 'Esha',
-  //     title: 'Event 3',
-  //     date: '2022-02-20',
-  //     time: '18:30',
-  //     location: 'Venue B',
-  //     description: 'Description for Event 2',
-  //   },
-  //   // Add more events as needed
-  // ];
 
   async function getData() {
     // const docRef = doc(db, "event", "JT2DqJFA0FOjHTZLUZ2j");
@@ -135,6 +105,11 @@ function FeedPage() {
   useEffect(() => {
     // In a real-world scenario, you might fetch events from a server here.
     // For simplicity, we're using dummy data.
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('q');
+    setQuery(myParam);
+
     async function callData() {
       console.log(await getData());
       setEvents(await getData());
@@ -148,8 +123,8 @@ function FeedPage() {
     <div>
       <div class="top-bar">
         <label class="main-title">Events Near You</label>
-        <Avatar alt={auth.currentUser.displayName} 
-                    src={auth.currentUser.photoURL} 
+        <Avatar alt={auth.currentUser === null ? "" : auth.currentUser.displayName} 
+                    src={auth.currentUser === null ? "" : auth.currentUser.photoURL} 
                     sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
             <Menu
               anchorEl={anchorEl}
@@ -161,8 +136,10 @@ function FeedPage() {
             </Link>
             <Link to="/create-event">
               <MenuItem onClick={createEvent}>Create Event</MenuItem>
-</Link>
+            </Link>
+            <Link to="/">
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Link>
             </Menu>
         <div >
           <Link to="/">
@@ -172,7 +149,12 @@ function FeedPage() {
       </div>
 
       <ul>
-        {events.map((event) => (
+        {events.filter((event)=>{
+          console.log(query)
+          return (query === null ? true : event.title.toLowerCase().includes(query) || 
+          query === null ? true : event.location.toLowerCase().includes(query) || 
+          query === null ? true : event.description.toLowerCase().includes(query));
+        }).map((event) => (
           <div class="rows">
             <div class="event-box column" key={event.id}>
               <h2 class="event-title">{event.title}</h2>

@@ -95,8 +95,8 @@ function EventPage() {
       <header>
           <div class="top-bar">
             <label class="main-title">Submit an Event</label>
-            <Avatar alt={auth.currentUser.displayName} 
-                    src={auth.currentUser.photoURL} 
+            <Avatar alt={auth.currentUser === null ? "" : auth.currentUser.displayName} 
+                    src={auth.currentUser === null ? "" : auth.currentUser.photoURL} 
                     sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
             <Menu
               anchorEl={anchorEl}
@@ -106,7 +106,12 @@ function EventPage() {
             <Link to="/account">
                 <MenuItem onClick={goToProfile}>My Profile</MenuItem>
             </Link>
+            <Link to="/create-event">
+              <MenuItem onClick={createEvent}>Create Event</MenuItem>
+            </Link>
+            <Link to="/">
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+            </Link>
             </Menu>
             <div >
               <Link to="/">
