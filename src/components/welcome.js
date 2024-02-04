@@ -92,7 +92,9 @@ function Welcome() {
       </div>
       <div className="search-bar">
         <TextField />
+        <Link to="/feed">
         <Button>Search</Button>
+        </Link>
       </div>
     </div>
   );
