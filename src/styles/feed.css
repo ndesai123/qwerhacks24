@@ -45,6 +45,7 @@
     display: flex;
 }
 .event-subheading {
+    width: 80%;
     margin-left: 2%;
     flex-shrink: 0;
     color: #000;
