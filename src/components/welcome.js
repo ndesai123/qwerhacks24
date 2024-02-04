@@ -3,6 +3,7 @@ import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from
 import { useState, useEffect } from 'react';
 import { Avatar, Button, Menu, MenuItem, TextField } from '@mui/material';
 import { Link } from "react-router-dom";
+import AdventureBuddiesImage from '../styles/images/AdventureBuddies.png';
 
 function Welcome() {
   const [user, setUser] = useState(null);
@@ -72,14 +73,14 @@ function Welcome() {
                 <MenuItem onClick={goToProfile}>My Profile</MenuItem>
                 </Link>
                 <Link to="/create-event">
-              <MenuItem onClick={createEvent}>Create Event</MenuItem>
-</Link>
+                  <MenuItem onClick={createEvent}>Create Event</MenuItem>
+                </Link>
               <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
             </Menu>
           </div>
         ) : (
           <div className="button-spacing">
-            <Button className="button-style buttontext" variant='standard' onClick={googleSignIn}>
+            <Button className="button-style buttontext topbutton" variant='standard' onClick={googleSignIn}>
               Sign Up!
             </Button>
             <label class = "padding"></label>
@@ -90,12 +91,16 @@ function Welcome() {
         )}
       </div>
       <div className="greeting">
-        <h1> Welcome! </h1>
-              </div>
+        <h1 class="titletext"> welcome! </h1>
+        <img
+              src={AdventureBuddiesImage}
+              alt="Adventure Buddies"
+            />
+      </div>
       <div class = "searchbargrid"> 
         <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/>
         <Link to="/feed">
-          <Button>Search</Button>
+          <Button class = "searchbutton buttontext">Search</Button>
         </Link>
       </div>
     </div>
