@@ -1,6 +1,8 @@
 // FeedPage.js
 import React, { useState, useEffect } from 'react';
 import './styles/feed.css'
+import AdventureBuddiesImage1 from './styles/images/AdventureBuddies1.png'
+import { Link } from "react-router-dom";
 
 function FeedPage() {
   const [events, setEvents] = useState([]);
@@ -55,6 +57,11 @@ function FeedPage() {
     <div>
       <div class="top-bar">
         <label class="main-title">Events Near You</label>
+        <div >
+          <Link to="/">
+              <img src={AdventureBuddiesImage1} height="100"></img>
+          </Link>
+        </div>
       </div>
 
       <ul>
@@ -125,7 +132,7 @@ function FeedPage() {
               </div>
 
               {/* interested button */}
-              <button type="button" class="button-box" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event.id)}>
+              <button type="button" class="button-box-feed" style={{ background: event.interested ? '#436850' : 'rgba(67, 104, 80, 0.20)' }} onClick={() => handleToggleInterest(event.id)}>
                 <label class="button-text" style={{ color: event.interested ? '#FAF8ED' : '#436850' }}>{event.interested ? 'No Longer Interested' : 'Interested!'}</label>
               </button>
             </div>
