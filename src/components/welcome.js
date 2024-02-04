@@ -80,7 +80,7 @@ function Welcome() {
           </div>
         ) : (
           <div className="button-spacing">
-            <Button className="button-style buttontext" variant='standard' onClick={googleSignIn}>
+            <Button className="button-style buttontext topbutton" variant='standard' onClick={googleSignIn}>
               Sign Up!
             </Button>
             <label class = "padding"></label>
@@ -91,17 +91,16 @@ function Welcome() {
         )}
       </div>
       <div className="greeting">
-        <h1> Welcome! </h1>
+        <h1 class="titletext"> welcome! </h1>
         <img
               src={AdventureBuddiesImage}
               alt="Adventure Buddies"
-              onClick={handleMenuOpen}
             />
       </div>
       <div class = "searchbargrid"> 
         <TextField className="search-bar" variant = "standard" InputProps={{ disableUnderline: true }}/>
         <Link to="/feed">
-          <Button>Search</Button>
+          <Button class = "searchbutton buttontext">Search</Button>
         </Link>
       </div>
     </div>
