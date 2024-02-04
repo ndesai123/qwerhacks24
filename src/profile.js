@@ -85,19 +85,21 @@ function Profile(){
                         <Avatar alt={auth.currentUser === null ? "" : auth.currentUser.displayName} 
                                             src={auth.currentUser === null ? "" : auth.currentUser.photoURL} 
                                             sx={{ width: 56, height: 56, marginTop: 2 }} onClick={handleMenuOpen} />
-                                    <Menu
-                                    anchorEl={anchorEl}
-                                    open={Boolean(anchorEl)}
-                                    onClose={handleMenuClose}
-                                    >
-                                    <Link to="/account">
-                                        <MenuItem onClick={goToProfile}>My Profile</MenuItem>
-                                    </Link>
-                                    <Link to="/create-event">
-                                    <MenuItem onClick={createEvent}>Create Event</MenuItem>
-                        </Link>
-                        <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
-                        </Menu>
+                            <Menu
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleMenuClose}
+                            >
+                            <Link to="/account">
+                                <MenuItem onClick={goToProfile}>My Profile</MenuItem>
+                            </Link>
+                            <Link to="/create-event">
+                            <MenuItem onClick={createEvent}>Create Event</MenuItem>
+                            </Link>
+                            <Link to="/">
+                            <MenuItem onClick={signOutGoogle}>Sign Out</MenuItem>
+                            </Link>
+                            </Menu>
                         <div>          
                             <Link to="/">
                                 <img src={AdventureBuddiesImage1} height="100"></img>
