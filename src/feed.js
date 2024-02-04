@@ -68,7 +68,6 @@ function FeedPage() {
   useEffect(() => {
     // In a real-world scenario, you might fetch events from a server here.
     // For simplicity, we're using dummy data.
-    setEvents(dummyEvents);
 
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('q');
@@ -113,7 +112,7 @@ function FeedPage() {
       <ul>
         {events.filter((event)=>{
           console.log(query)
-          return (query === null ? true : event.title.includes(query));
+          return (query === null ? true : event.title.toLowerCase().includes(query));
         }).map((event) => (
           <div class="rows">
             <div class="event-box column" key={event.id}>
